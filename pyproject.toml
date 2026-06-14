@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-lens"
+version = "0.0.1"
+description = "Eval + observability for LLM agents — trace-level evaluation, causal failure analysis, cost/latency dashboards, and CI eval-gates."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Marcos Rostan", email = "rostanmarcos@gmail.com" }]
+keywords = [
+    "llm",
+    "agents",
+    "evaluation",
+    "observability",
+    "opentelemetry",
+    "tracing",
+    "llm-as-judge",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pydantic>=2.6",
+    "opentelemetry-api>=1.24",
+    "opentelemetry-sdk>=1.24",
+    "prometheus-client>=0.20",
+    # Provider SDKs for the LLM-as-judge layer (provider-agnostic; OpenRouter is reached via the openai client).
+    "anthropic>=0.25",
+    "openai>=1.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/MarcosRos002/agent-lens"
+Repository = "https://github.com/MarcosRos002/agent-lens"
+"Sibling: claims-auditor" = "https://github.com/MarcosRos002/claims-auditor"
+"Sibling: fine-tune-lab" = "https://github.com/MarcosRos002/fine-tune-lab"
+"Sibling: portfolio" = "https://github.com/MarcosRos002/portfolio"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+# pycodestyle, pyflakes, isort, pyupgrade, bugbear, simplify
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = [
+    "B008",   # function-call-in-default-argument (common with pydantic/Field)
+    "UP042",  # str+Enum is intentional: clean JSON serialization, broad pydantic support
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["agent_lens"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra -q"
+pythonpath = ["src"]
