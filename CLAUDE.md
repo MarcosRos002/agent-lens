@@ -53,6 +53,7 @@ Relationship: claims-auditor is measured by agent-lens, fed a cheap model by fin
 - **Python ≥ 3.11**, package name `agent-lens`, import name `agent_lens`,
   `src/` layout.
 - **Lint/format** with ruff; **test** with pytest. Run both before committing.
+- **Package manager (JS/Node tooling): pnpm only — never use npm or npx.**
 - The `schema/` package is **concrete**; everything else is currently a
   Phase-0 stub (`...` bodies). Implement behind the existing signatures.
 
