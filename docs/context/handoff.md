@@ -2,8 +2,22 @@
 
 ## Where we are
 
-**Phase 0 (context-readiness) complete.** The repo is scaffolded for a fresh
-Claude Code session to pick up and build:
+**Phase 1 started — observability + first evaluator built.**
+- `metrics.py`: `compute_trace_metrics(trace) -> TraceMetrics` (latency P50/P95
+  via nearest-rank, total cost/tokens, error rate, per-step-kind breakdown) +
+  `metrics_as_schema()` for dashboards. The `TraceEvent` contract is confirmed
+  against what `claims-auditor` actually emits (rules TOOL step + classifier LLM
+  step with `pass_used`/`escalated` metadata).
+- `eval/heuristic.py`: `ToolCallCorrectnessEvaluator` implemented (trace-level,
+  no LLM) — satisfies the `Evaluator` Protocol.
+- Pinned by `tests/test_metrics.py` + `tests/test_heuristic_eval.py`. 16 tests pass.
+- **Next:** LLM-as-judge trajectory evaluator (`eval/llm_judge.py`, inject model),
+  the CI eval-gate (`ci/gate.py`, reads `EvalResult.passed`), Prometheus exporter
+  (`dashboards/`), then `tracing` (OTel capture) and `analysis` (causal failure).
+
+## Phase 0 baseline (still valid)
+
+The repo was scaffolded for a fresh Claude Code session:
 
 - Directory structure under `src/agent_lens/` (schema, tracing, eval, analysis,
   dashboards, ci, exporters) + `tests/`, `examples/`, `docs/`.

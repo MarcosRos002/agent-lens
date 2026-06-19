@@ -8,6 +8,8 @@ Most submodules are Phase-0 stubs; the ``schema`` package is concrete because
 it is the cross-repo contract other repos depend on.
 """
 
+from agent_lens.eval.heuristic import ToolCallCorrectnessEvaluator
+from agent_lens.metrics import TraceMetrics, compute_trace_metrics, metrics_as_schema
 from agent_lens.schema import (
     EvalReport,
     EvalResult,
@@ -24,5 +26,9 @@ __all__ = [
     "Metric",
     "Trace",
     "TraceEvent",
+    "TraceMetrics",
+    "compute_trace_metrics",
+    "metrics_as_schema",
+    "ToolCallCorrectnessEvaluator",
     "__version__",
 ]
