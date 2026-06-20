@@ -9,6 +9,7 @@ it is the cross-repo contract other repos depend on.
 """
 
 from agent_lens.eval.heuristic import ToolCallCorrectnessEvaluator
+from agent_lens.eval.llm_judge import TrajectoryJudgeEvaluator
 from agent_lens.metrics import TraceMetrics, compute_trace_metrics, metrics_as_schema
 from agent_lens.schema import (
     EvalReport,
@@ -30,5 +31,6 @@ __all__ = [
     "compute_trace_metrics",
     "metrics_as_schema",
     "ToolCallCorrectnessEvaluator",
+    "TrajectoryJudgeEvaluator",
     "__version__",
 ]
