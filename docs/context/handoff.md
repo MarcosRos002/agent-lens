@@ -11,9 +11,13 @@
 - `eval/heuristic.py`: `ToolCallCorrectnessEvaluator` implemented (trace-level,
   no LLM) — satisfies the `Evaluator` Protocol.
 - Pinned by `tests/test_metrics.py` + `tests/test_heuristic_eval.py`. 16 tests pass.
+- `ci/gate.py`: **CI eval-gate implemented** — `EvalGate` (direction-aware,
+  per-evaluator/per-metric, relative tolerance) + CLI; `.github/workflows/ci.yml`
+  (lint+tests) and `eval-gate.yml` (suite → gate vs `eval/baseline_report.json`);
+  `examples/run_eval_suite.py`. Pinned by `tests/test_ci_gate.py`. **25 tests pass.**
 - **Next:** LLM-as-judge trajectory evaluator (`eval/llm_judge.py`, inject model),
-  the CI eval-gate (`ci/gate.py`, reads `EvalResult.passed`), Prometheus exporter
-  (`dashboards/`), then `tracing` (OTel capture) and `analysis` (causal failure).
+  Prometheus exporter (`dashboards/`), then `tracing` (OTel capture) and
+  `analysis` (causal failure).
 
 ## Phase 0 baseline (still valid)
 

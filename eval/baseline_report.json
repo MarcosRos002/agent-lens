@@ -1,0 +1,42 @@
+{
+  "suite": "agent-lens-example",
+  "results": [
+    {
+      "evaluator": "heuristic:tool_call_correctness",
+      "session_id": "audit-1",
+      "step_id": null,
+      "score": 1.0,
+      "passed": true,
+      "metrics": [
+        {
+          "name": "tool_call_correctness",
+          "value": 1.0,
+          "direction": "higher_is_better",
+          "unit": "ratio",
+          "metadata": {}
+        }
+      ],
+      "rationale": "expected=['rules_engine.evaluate'] ordered=False actual=['rules_engine.evaluate']",
+      "metadata": {}
+    },
+    {
+      "evaluator": "heuristic:tool_call_correctness",
+      "session_id": "audit-2",
+      "step_id": null,
+      "score": 1.0,
+      "passed": true,
+      "metrics": [
+        {
+          "name": "tool_call_correctness",
+          "value": 1.0,
+          "direction": "higher_is_better",
+          "unit": "ratio",
+          "metadata": {}
+        }
+      ],
+      "rationale": "expected=['rules_engine.evaluate'] ordered=False actual=['lookup_cpt', 'rules_engine.evaluate']",
+      "metadata": {}
+    }
+  ],
+  "metadata": {}
+}

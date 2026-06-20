@@ -30,10 +30,10 @@ SCHEMA_VERSION = "0.1.0"
 class StepKind(str, Enum):
     """What a single step in an agent trace represents."""
 
-    LLM = "llm"          # a model call (reasoning / generation)
-    TOOL = "tool"        # a tool / function invocation
+    LLM = "llm"  # a model call (reasoning / generation)
+    TOOL = "tool"  # a tool / function invocation
     RETRIEVAL = "retrieval"  # a RAG / vector-store lookup
-    AGENT = "agent"      # a sub-agent / nested agent invocation
+    AGENT = "agent"  # a sub-agent / nested agent invocation
     GUARDRAIL = "guardrail"  # a validation / safety / policy check
     OTHER = "other"
 

@@ -1,0 +1,28 @@
+name: eval-gate
+
+# Quality gate for AI behavior: runs the eval suite and BLOCKS the merge if any
+# evaluator score (or a cost/latency metric) regresses beyond tolerance versus
+# the committed baseline. This is the "evals as CI" discipline — the analogue of
+# unit tests, but for agent quality, not just code correctness.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  eval-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Run eval suite (produces the current report)
+        run: python examples/run_eval_suite.py > current_report.json
+      - name: Gate against the committed baseline
+        run: python -m agent_lens.ci.gate eval/baseline_report.json current_report.json
+      # To intentionally accept a change, regenerate and commit the baseline:
+      #   python examples/run_eval_suite.py > eval/baseline_report.json

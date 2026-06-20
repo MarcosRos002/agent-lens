@@ -1,6 +1,11 @@
 # Module: `ci`
 
-**Status:** Phase-0 stub.
+**Status:** implemented (Phase 1). `EvalGate` + CLI (`run_gate` / `python -m
+agent_lens.ci.gate`) pinned by `tests/test_ci_gate.py`. Two GitHub Actions wired:
+`.github/workflows/ci.yml` (lint + tests) and `.github/workflows/eval-gate.yml`
+(runs `examples/run_eval_suite.py` → gates against `eval/baseline_report.json`).
+Gating is **per-evaluator + per-metric, direction-aware, relative tolerance**
+(not the global `pass_rate`, which is confounded when the evaluator set changes).
 
 ## Purpose
 
