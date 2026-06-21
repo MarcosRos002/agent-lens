@@ -20,10 +20,15 @@
   re-prompt, self-consistency via median over `samples`, records judge
   `model`/`provider` for reproducibility. Offline-testable. Pinned by
   `tests/test_llm_judge.py`. **32 tests pass.**
-- **Next:** a real `JudgeModel` adapter (Anthropic/OpenRouter, temperature=0),
-  Prometheus exporter (`dashboards/`), `tracing` (OTel capture), and `analysis`
-  (causal failure). The CI eval suite stays heuristic-only (free/deterministic);
-  the judge runs in a nightly/manual eval with a real model.
+- `analysis/causal.py`: **`find_root_cause` implemented** — walks the
+  `parent_step_id` tree, returns the originating failure (not the symptom).
+- `dashboards/prometheus.py`: **`PrometheusExporter` implemented** — latency
+  histogram + cost/tokens/steps/errors counters (isolated registry), `expose()`;
+  Grafana dashboard JSON at `dashboards/grafana/agent_lens.json`.
+- Pinned by `tests/test_causal.py` + `tests/test_dashboards.py`. **43 tests pass.**
+- **Next:** `tracing` (OTel capture decorators/context managers), `exporters`
+  (Langfuse/LangSmith), and a real `JudgeModel` adapter (Anthropic/OpenRouter,
+  temperature=0). CI eval suite stays heuristic-only; judge runs in a nightly eval.
 
 ## Phase 0 baseline (still valid)
 

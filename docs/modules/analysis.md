@@ -1,6 +1,9 @@
 # Module: `analysis`
 
-**Status:** Phase-0 stub.
+**Status:** implemented (Phase 1). `find_root_cause(trace)` walks the
+`parent_step_id` tree and returns the originating failure (the earliest error with
+no failed ancestor), not a downstream symptom; `None` if the trace didn't fail.
+Pinned by `tests/test_causal.py`.
 
 ## Purpose
 

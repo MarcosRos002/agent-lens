@@ -8,6 +8,8 @@ Most submodules are Phase-0 stubs; the ``schema`` package is concrete because
 it is the cross-repo contract other repos depend on.
 """
 
+from agent_lens.analysis.causal import find_root_cause
+from agent_lens.dashboards.prometheus import PrometheusExporter
 from agent_lens.eval.heuristic import ToolCallCorrectnessEvaluator
 from agent_lens.eval.llm_judge import TrajectoryJudgeEvaluator
 from agent_lens.metrics import TraceMetrics, compute_trace_metrics, metrics_as_schema
@@ -32,5 +34,7 @@ __all__ = [
     "metrics_as_schema",
     "ToolCallCorrectnessEvaluator",
     "TrajectoryJudgeEvaluator",
+    "find_root_cause",
+    "PrometheusExporter",
     "__version__",
 ]

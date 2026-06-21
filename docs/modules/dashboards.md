@@ -1,6 +1,10 @@
 # Module: `dashboards`
 
-**Status:** Phase-0 stub.
+**Status:** implemented (Phase 1). `PrometheusExporter(namespace).record(trace)`
+updates a per-step latency histogram + cost/tokens/steps/errors counters (own
+`CollectorRegistry` per instance); `expose()` returns the scrape text. A Grafana
+dashboard (P95 latency, cost/tokens by model, error rate) ships at
+`src/agent_lens/dashboards/grafana/agent_lens.json`. Pinned by `tests/test_dashboards.py`.
 
 ## Purpose
 
