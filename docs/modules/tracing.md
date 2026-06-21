@@ -1,6 +1,6 @@
 # Module: `tracing`
 
-**Status:** Phase-0 stub.
+**Status:** implemented (Phase 1). `trace_session()` + `trace_step()` context managers capture an instrumented agent into a canonical `Trace` (contextvar-based session/parent linkage; OTel-friendly). `Step.record_output/record_model/record_input`. Pinned by `tests/test_tracing.py`.
 
 ## Purpose
 

@@ -26,9 +26,16 @@
   histogram + cost/tokens/steps/errors counters (isolated registry), `expose()`;
   Grafana dashboard JSON at `dashboards/grafana/agent_lens.json`.
 - Pinned by `tests/test_causal.py` + `tests/test_dashboards.py`. **43 tests pass.**
-- **Next:** `tracing` (OTel capture decorators/context managers), `exporters`
-  (Langfuse/LangSmith), and a real `JudgeModel` adapter (Anthropic/OpenRouter,
-  temperature=0). CI eval suite stays heuristic-only; judge runs in a nightly eval.
+- `tracing/capture.py`: **`trace_session` + `trace_step` implemented** — instrument
+  an agent into a canonical `Trace` (contextvar session/parent linkage, OTel-friendly,
+  `Step.record_output/record_model/record_input`). Pinned by `tests/test_tracing.py`.
+- `exporters/`: **`LangfuseExporter.to_observations` + `LangSmithExporter.to_runs`
+  implemented** — map the canonical Trace onto each platform; `export()` lazily pushes
+  via the SDK. Pinned by `tests/test_exporters.py`.
+- **54 tests pass.** agent-lens now spans the full loop: capture → eval (heuristic +
+  LLM-judge) → metrics/dashboards → causal analysis → CI gate → export.
+- **Remaining:** a real `JudgeModel` adapter (Anthropic/OpenRouter, temperature=0)
+  for live judging; everything else is offline-complete.
 
 ## Phase 0 baseline (still valid)
 

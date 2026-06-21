@@ -1,6 +1,6 @@
 # Module: `exporters`
 
-**Status:** Phase-0 stub.
+**Status:** implemented (Phase 1). `LangfuseExporter.to_observations(trace)` and `LangSmithExporter.to_runs(trace)` map the canonical Trace onto each platform's schema (parent linkage, tokens, cost, latency, status/error). `export()` lazily pushes via the SDK. Pinned by `tests/test_exporters.py`.
 
 ## Purpose
 
